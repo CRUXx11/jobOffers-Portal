@@ -10,7 +10,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" exact element={<MainComponent />} />
-          <Route path="/job" element={<JobCard/>} />
         </Routes>
       </Router>
 
