@@ -1,0 +1,46 @@
+.filters {
+  display: flex;
+  justify-content: center;
+}
+.form-flex {
+  display: flex;
+  flex-direction: row;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  justify-content: end;
+}
+.form-group label {
+  margin-bottom: 0.5em;
+  color: #888a88;
+  font-size: small;
+  font-weight: 500;
+}
+.form-control {
+  width: 8vw;
+  text-align: center;
+  height: 5vh;
+  border-radius: 0.3em;
+  border-color: #cccccc;
+  color: #888a88;
+}
+
+.form-control option {
+  font-size: 1.2em;
+}
+#location {
+  font-size: 0.8em;
+}
+#companyName {
+  text-align: left;
+  padding-left: 5px;
+  height: 4vh;
+  border-color: #cccccc;
+  color: #888a88;
+  width: 10vw;
+}
+.form-control:focus {
+  border: 2px solid blue !important;
+}

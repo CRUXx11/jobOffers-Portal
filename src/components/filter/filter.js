@@ -39,11 +39,11 @@ const FilterComponent = () => {
       <form className="form-flex">
         <div className="form-group">
           {filters.find((filter) => filter.filterType === "experience") && (
-            <label htmlFor="experience" className="col-sm-2 col-form-label">
+            <label htmlFor="experience" className="form-label">
               Experience
             </label>
           )}
-          <div className="col-sm-10">
+          <div>
             <select
               className="form-control"
               id="experience"
@@ -65,11 +65,11 @@ const FilterComponent = () => {
         </div>
         <div className="form-group">
           {filters.find((filter) => filter.filterType === "minbasepay") && (
-            <label htmlFor="minbasepay" className="col-sm-2 col-form-label">
+            <label htmlFor="minbasepay" className="form-label">
               Min Base Pay
             </label>
           )}
-          <div className="col-sm-10">
+          <div>
             <select
               className="form-control"
               id="minbasepay"
@@ -88,6 +88,47 @@ const FilterComponent = () => {
               ))}
             </select>
           </div>
+        </div>
+        <div className="form-group">
+          {filters.find((filter) => filter.filterType === "location") && (
+            <label htmlFor="location" className="form-label">
+              Location
+            </label>
+          )}
+          <div>
+            <select
+              className="form-control"
+              id="location"
+              defaultValue=""
+              onChange={(event) =>
+                handleFilterChange("location", event.target.value)
+              }
+            >
+              <option value="" disabled hidden>
+                Location
+              </option>
+              <option>Remote</option>
+              <option>Hybrid</option>
+              <option>On-Site</option>
+            </select>
+          </div>
+        </div>
+        <div className="form-group">
+          {filters.find((filter) => filter.filterType === "companyName") && (
+            <label htmlFor="companyName" className="form-label">
+              Company Name
+            </label>
+          )}
+
+          <input
+            type="text"
+            className="form-control"
+            id="companyName"
+            placeholder="Company Name"
+            onChange={(event) =>
+              handleFilterChange("companyName", event.target.value)
+            }
+          />
         </div>
       </form>
     </div>

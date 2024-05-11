@@ -49,7 +49,12 @@ const filterJobs = (jobs, filters) => {
           }
         });
         break;
-
+      case "companyName":
+        filteredJobs = filteredJobs.filter((job) => {
+          const jobCompanyName = job.companyName.toLowerCase();
+          return jobCompanyName.includes(filter.value.toLowerCase());
+        });
+        break;
       default:
         break;
     }
