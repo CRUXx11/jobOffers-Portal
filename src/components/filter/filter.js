@@ -122,11 +122,28 @@ const FilterComponent = () => {
 
           <input
             type="text"
-            className="form-control"
+            className="form-control filterInput"
             id="companyName"
             placeholder="Company Name"
             onChange={(event) =>
               handleFilterChange("companyName", event.target.value)
+            }
+          />
+        </div>
+        <div className="form-group">
+          {filters.find((filter) => filter.filterType === "jobRole") && (
+            <label htmlFor="jobRole" className="form-label">
+              Job Role
+            </label>
+          )}
+
+          <input
+            type="text"
+            className="form-control filterInput"
+            id="jobRole"
+            placeholder="Job Role"
+            onChange={(event) =>
+              handleFilterChange("jobRole", event.target.value)
             }
           />
         </div>

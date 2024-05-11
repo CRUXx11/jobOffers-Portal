@@ -55,6 +55,12 @@ const filterJobs = (jobs, filters) => {
           return jobCompanyName.includes(filter.value.toLowerCase());
         });
         break;
+      case "jobRole":
+        filteredJobs = filteredJobs.filter((job) => {
+          const jobCompanyName = job.jobRole.toLowerCase();
+          return jobCompanyName.includes(filter.value.toLowerCase());
+        });
+        break;
       default:
         break;
     }
