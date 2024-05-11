@@ -1,0 +1,30 @@
+.jumbotron {
+  height: 100%;
+  padding-top: 0;
+  background-color: #f2f4f8;
+}
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+  grid-row-gap: 20px;
+}
+
+.app-card {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  min-height: fit-content;
+}
+
+.container {
+  max-width: 1105px; /* Default max-width for large screens */
+}

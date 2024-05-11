@@ -1,0 +1,124 @@
+.job-card {
+  width: 100%;
+  /* height: 95%; */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 2em;
+}
+.posted {
+  width: fit-content;
+  padding: 4px 7px 4px 7px;
+  font-size: 0.6rem;
+  border: 1px solid lightgray;
+  border-top-left-radius: 10% 50%;
+  border-bottom-left-radius: 10% 50%;
+  border-top-right-radius: 10% 50%;
+  border-bottom-right-radius: 10% 50%;
+}
+.companyDetails {
+  display: flex;
+}
+.details {
+  margin-left: 0.5em;
+  text-transform: capitalize;
+}
+.companyIcon {
+  width: 8%;
+  height: 65%;
+}
+.flex-item {
+  margin: 5px;
+}
+.companyName {
+  color: #939393;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+.jobRole {
+  font-weight: 450;
+}
+.location {
+  font-size: 0.8em;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.salary {
+  color: #063552;
+  font-weight: 500;
+  font-size: small;
+}
+.aboutText {
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.aboutTextIn {
+  font-size: small;
+  font-weight: 650;
+}
+.description {
+  font-size: 0.9em;
+  height: 40vh;
+  overflow: hidden;
+}
+.overlay {
+  display: flex;
+  flex-direction: column;
+  margin-top: -30vh;
+  /* background-color: white; */
+}
+.viewJob {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, transparent, white 100%);
+  padding-top: 2em;
+}
+.viewJob a {
+  padding: 1em 1em 0em 1em;
+  background: radial-gradient(white, transparent);
+}
+
+.apply {
+  position: relative;
+  padding-top: 2em;
+  background-color: white;
+}
+.exp {
+  color: #888888;
+  font-size: x-small;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.years {
+  font-size: small;
+  font-weight: 500;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button {
+  padding: 1em;
+  text-align: center;
+  margin-top: 1em;
+  border: none;
+  border-radius: 0.8em;
+  width: 90%;
+  cursor: pointer;
+}
+.easyApply {
+  background-color: #54efc3;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+.referrals {
+  background-color: #4943da;
+  font-size: 0.9em;
+  color: white;
+}
