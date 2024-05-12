@@ -13,16 +13,10 @@
   flex-wrap: wrap;
 }
 .wrapper {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
-  grid-row-gap: 20px; */
-}
-.infinite-scroll-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
   grid-row-gap: 20px;
 }
-
 .app-card {
   display: flex;
   justify-content: center;

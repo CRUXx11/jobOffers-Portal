@@ -17,7 +17,7 @@ export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async (page) => {
   );
   const data = await response.json();
   console.log(data);
-  return data.jdList;
+  return { data: data.jdList, totalCount: data.totalCount };
 });
 
 // filtering logic here
@@ -75,6 +75,7 @@ const jobSlice = createSlice({
     jobs: [],
     filters: [],
     filteredJobs: [],
+    hasMore: true,
     isLoading: true,
     error: null,
   },
@@ -113,8 +114,17 @@ const jobSlice = createSlice({
       })
       .addCase(fetchJobs.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.jobs = [...state.jobs, ...action.payload];
-        console.log(state.jobs, "oo");
+
+        state.jobs = [...state.jobs, ...action.payload.data];
+        console.log(
+          "payload",
+          action.payload.totalCount,
+          state.jobs.length,
+          state.jobs.length > action.payload.totalCount
+        );
+        if (state.jobs.length >= action.payload.totalCount) {
+          state.hasMore = false;
+        }
       })
       .addCase(fetchJobs.rejected, (state, action) => {
         state.isLoading = false;

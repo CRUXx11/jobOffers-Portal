@@ -1,21 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import JobCard from "../jobs/jobCard";
 import "./main.css";
 import { useSelector, useDispatch } from "react-redux";
 import FilterComponent from "../filter/filter";
 import { fetchJobs } from "../../filterSlice";
-import InfiniteScroll from "react-infinite-scroll-component";
 const MainComponent = () => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-  const lastElementRef = useRef(null);
-  const [showLoadingMessage, setShowLoadingMessage] = useState(false);
-  useEffect(() => {
-    dispatch(fetchJobs(page));
-  }, [dispatch, page]);
+  const [page, setPage] = useState(0);
   const isLoading = useSelector((state) => state.filters.isLoading);
   const error = useSelector((state) => state.filters.error);
   const originalJobs = useSelector((state) => state.filters.jobs);
+  const hasMore = useSelector((state) => state.filters.hasMore);
   const filteredJobs = useSelector((state) => state.filters.filteredJobs);
   const jobsToDisplay = useSelector((state) => {
     if (state.filters.filters && state.filters.filters.length > 0) {
@@ -24,17 +19,26 @@ const MainComponent = () => {
       return originalJobs;
     }
   });
+  const observer = useRef(null);
+  const lastElementRef = useCallback(
+    (node) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore]
+  );
 
-  const loadMoreJobs = () => {
-    setPage((prevPage) => prevPage + 1);
-
-    setShowLoadingMessage(true);
-    setTimeout(() => {
+  useEffect(() => {
+    if (hasMore) {
       dispatch(fetchJobs(page));
-      setShowLoadingMessage(false);
-    }, 500);
-  };
-
+    }
+  }, [dispatch, page, hasMore]);
   return (
     <>
       <FilterComponent />
@@ -42,24 +46,26 @@ const MainComponent = () => {
         <div className="container">
           <div className="row">
             <div className="wrapper">
-              {isLoading || showLoadingMessage ? (
-                <p>Loading jobs...</p>
-              ) : error ? (
-                <p>Error: {error}</p>
-              ) : jobsToDisplay && jobsToDisplay.length > 0 ? (
-                <InfiniteScroll
-                  dataLength={jobsToDisplay.length}
-                  next={loadMoreJobs}
-                  hasMore={true}
-                  loader={<h4>Loading...</h4>}
-                  className="infinite-scroll-content"
-                >
-                  {jobsToDisplay.map((job, index) => (
-                    <div className="app-card" key={index}>
-                      <JobCard job={job} />
-                    </div>
-                  ))}
-                </InfiniteScroll>
+              {jobsToDisplay && jobsToDisplay.length > 0 ? (
+                jobsToDisplay.map((job, index) => {
+                  if (jobsToDisplay.length == index + 1) {
+                    return (
+                      <div
+                        ref={lastElementRef}
+                        className="app-card"
+                        key={index}
+                      >
+                        <JobCard job={job} />
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div className="app-card" key={index}>
+                        <JobCard job={job} />
+                      </div>
+                    );
+                  }
+                })
               ) : (
                 <p>No jobs found.</p>
               )}
