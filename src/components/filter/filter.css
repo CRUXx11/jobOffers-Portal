@@ -4,8 +4,11 @@
   background-color: #f2f4f8;
 }
 .form-flex {
+  width: 100%;
+  justify-content: center;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .form-group {
   display: flex;
@@ -20,7 +23,7 @@
   font-weight: 500;
 }
 .form-control {
-  width: 8vw;
+  width: fit-content;
   text-align: center;
   height: 5vh;
   border-radius: 0.3em;
@@ -40,7 +43,7 @@
   height: 4vh;
   border-color: #cccccc;
   color: #888a88;
-  width: 10vw;
+  width: fit-content;
 }
 .form-control:focus {
   border: 2px solid blue !important;

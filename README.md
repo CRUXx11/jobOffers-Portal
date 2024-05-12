@@ -1,5 +1,4 @@
-## Node version
-v20.10.0
+## Node version `v20.10.0`
 
 In the project directory, you can run:
 
